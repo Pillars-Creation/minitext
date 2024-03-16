@@ -1,13 +1,7 @@
+var commonAd = require("./utils/Ad/index");
 App({
   onLaunch: function () {
-    // const {
-    //   initInsertAd,
-    //   initRewardedVideoAd
-    // } = this.globalData;
-    // // 初始化插屏
-    // this.interstitialAd = initInsertAd.bind(this)('9041zipeh9eai60s8j');
-    // // 初始化激励视频
-    // this.rewardedVideoAd = initRewardedVideoAd.bind(this)('y0pg2zt7qllnfett1f', this.showQianHandle);
+
   },
   globalData: {
     titleItems: [
@@ -24,19 +18,10 @@ App({
       { title: "测试你的爱情素质" },
       { title: "爱情会让你失去什么" },
     ],
+ 
+    ...commonAd.allAd,
 
-    // initInsertAd: function (adUnitId) {
-    //   return wx.createInterstitialAd({
-    //     adUnitId: adUnitId
-    //   });
-    // },
-    // initRewardedVideoAd: function (adUnitId, handler) {
-    //   const rewardedVideoAd = wx.createRewardedVideoAd({
-    //     adUnitId: adUnitId
-    //   });
-    //   rewardedVideoAd.onClose(handler);
-    //   return rewardedVideoAd;
-    // }
 
   },
+
 });

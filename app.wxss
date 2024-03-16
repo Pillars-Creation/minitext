@@ -7,6 +7,9 @@
   justify-content: space-between;
   padding: 200rpx 0;
   box-sizing: border-box;
+  background-size: cover; /* 背景图片等比例缩放铺满容器 */
+  background-position: center; /* 背景图片居中显示 */
+  opacity: 0.8; /* 设置背景图片透明度 */
 }
 
 button {

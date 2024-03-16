@@ -1,5 +1,6 @@
 <view class="body">
   <view class="content">
+
     <view class="upGroup">
       <view class="hot">
         <text>随机测试</text>

@@ -1,9 +1,14 @@
 .body {
   height: 100vh;
+  background-image: url('../../assets/images/background.jpg'); /* 背景图片路径 */
+  background-size: cover; /* 背景图片等比例缩放铺满容器 */
+  background-position: center; /* 背景图片居中显示 */
+  /* opacity: ; 设置背景图片透明度 */
 }
 
 .body .content {
   padding: 10rpx 20rpx;
+  
 }
 
 .content .upGroup {
