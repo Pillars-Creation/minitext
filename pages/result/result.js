@@ -1,5 +1,6 @@
 // pages/result/result.js
 Page({
+  
   handleBack: function () {
     wx.navigateBack({
       delta: 2,
@@ -10,6 +11,7 @@ Page({
    */
   data: {
     title: "",
+    result: "",
   },
 
   /**
@@ -362,7 +364,20 @@ Page({
         }
       }
     }
+    wx.showModal({
+      title: '测试结果',
+      content: this.data.result,
+      showCancel: false,
+      confirmText: '确定',
+      confirmColor: '#FFD700', // 确定按钮颜色
+      confirmFontSize: '24rpx', // 确定按钮字体大小
+      confirmFontWeight: 'bold', // 确定按钮字体加粗
+      contentColor: '#FF0000', // 内容字体颜色
+      backgroundColor: '#FF0000', // 弹窗背景颜色
+      backgroundOpacity: 1, // 弹窗背景透明度
+    });
   },
+  
 
   /**
    * 生命周期函数--监听页面初次渲染完成
