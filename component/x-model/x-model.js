@@ -26,6 +26,7 @@ Component({
   data: {
     index: 1,
     realIndex: 0,
+    count: 1,
     A: 0,
     B: 0,
     C: 0,
@@ -66,7 +67,13 @@ Component({
       19,
     ],
   },
-  methods: {},
+
+  methods: {
+
+    
+    
+
+  },
 
   /**
    * 组件的方法列表

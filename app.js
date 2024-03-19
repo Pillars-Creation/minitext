@@ -18,6 +18,10 @@ App({
       { title: "测试你的爱情素质" },
       { title: "爱情会让你失去什么" },
     ],
+    list: [],
+    ids: 0,
+    listType: "",
+    count: 0,
  
     ...commonAd.allAd,
 

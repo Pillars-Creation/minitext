@@ -3,16 +3,21 @@ var app = getApp();
 Page({
   data: {
     itemList: [],
+    animationData: [],
+    currentBackground: "../../assets/images/background.jpg"
   },
   goPsy: function () {
+    
     wx.navigateTo({
       url: "/pages/text-home/text-home?type=psy",
     });
+    app.globalData.listType =  'psy';
   },
   goCharacter: function () {
     wx.navigateTo({
       url: "/pages/text-home/text-home?type=character",
     });
+    app.globalData.listType =  'character';
   },
 
   //生成不重复的随机数组
@@ -78,5 +83,27 @@ Page({
 
   onLoad: function (options) {
     this.onPullDownRefresh();
+    this.startAnimation();
   },
+
+  startAnimation: function () {
+    var animation = wx.createAnimation({
+      duration: 1000,
+      timingFunction: 'ease',
+    });
+    var next = true;
+    setInterval(() => {
+      if (next) {
+        animation.scale(1, 1).step();
+        next = !next;
+      } else {
+        animation.scale(0.8, 0.8).step();
+        next = !next;
+      }
+      this.setData({
+        animationData: animation.export()
+      });
+    }, 500);
+  },
+
 });

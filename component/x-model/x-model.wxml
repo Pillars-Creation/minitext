@@ -7,9 +7,10 @@
     </view>
     <view class="page_bd">
         <block wx:for="{{list[0].items}}" wx:key="index">
-            <navigator url="/pages/result/result?options={{index+1}}&img={{list[0].img}}&listType={{listType}}&type={{ids}}&title={{list[0].questionDetail}}" class="weui-cell">
+            <navigator bindtap="navigateToPage" url="/pages/result/result" class="weui-cell" data-index="{{index}}" data-listType="{{listType}}" data-ids="{{ids}}" data-list="{{list}}">
                 <view class="weui-cell__bd">{{index+1}}、{{list[0].option[index+1]}}</view>
             </navigator>
         </block>
     </view>
+    
 </view>

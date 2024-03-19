@@ -97,56 +97,10 @@ Page({
   navigatorList: function (e) {
     let id = e.detail.id;
     const _this = this;
-    if (true) {
-      tt.showModal({
-        title: "即将进入广告",
-        content: "【看广告】后方可获取激励结果",
-        showCancel: false,
-        success(res) {
-          const rewardedVideoAd = tt.createRewardedVideoAd({
-            adUnitId: 'bqlr47knrrfb90m4ou', // 广告位ID，请替换为你自己的激励广告位ID
-          });
-  
-          rewardedVideoAd.show().then(() => {
-            // 激励视频广告显示成功
-          }).catch((err) => {
-            console.log('激励视频广告显示失败', err);
-            setTimeout(() => {
-              const count = _this.randomNumber();
-              _this.setData({
-                isShaking: false,
-                hidden: false,
-                listIndex: count,
-                repeat: true,
-              });
-              console.log('count--', count);
-            }, 2000);
-          });
-  
-          rewardedVideoAd.onClose((res) => {
-            if (res && res.isEnded) {
-              // 用户观看完整广告
-              tt.navigateTo({
-                url: "/pages/text-list/text-list?id=" + id + "&type=" + _this.data.type,
-              });
-            } else {
-              // 用户未观看完整广告
-              console.log('User did not watch the complete ad');
-              setTimeout(() => {
-                const count = _this.randomNumber();
-                _this.setData({
-                  isShaking: false,
-                  hidden: false,
-                  listIndex: count,
-                  repeat: true,
-                });
-                console.log('count--', count);
-              }, 2000);
-            }
-          });
-        },
-      });
-    }
+    tt.navigateTo({
+      url: "/pages/text-list/text-list?id=" + id + "&type=" + _this.data.type,
+    });
+
   },
   
 

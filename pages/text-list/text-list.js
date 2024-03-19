@@ -16,6 +16,8 @@ Page({
       wx.setNavigationBarTitle({
         title: "性格测试页面",
       });
+
+
       if (ids == 0) {
         that.setData({
           ids: ids,
@@ -249,6 +251,35 @@ Page({
     }
   },
 
+  navigateToPage: function (event) {
+    let index = event.currentTarget.dataset.index;
+    // 添加一个统计变量，2次以外展示结果
+    console.log('count before setData:', app.globalData.count);
+    if (app.globalData.count > 0) {
+      console.log('count 第二次展现 setData:', app.globalData.count);
+      app.globalData.count = 0;
+      let listType = app.globalData.listType;
+      let ids = app.globalData.ids;
+      let list = app.globalData.list;
+      let url = "/pages/result/result" + "?options=" + 1 + "&listType=" + listType + "&type=" + ids ;
+      console.log('Navigate to URL:', url);
+      tt.navigateTo({
+        url: url
+      });
+    } else {
+      console.log('count 第一次展现 setData:', app.globalData.count);
+      app.globalData.count = app.globalData.count + 1;
+      console.log('app.globalData.count after setData:', app.globalData.count);
+      let id = app.globalData.count <= 2 ? Math.floor(Math.random() * 5) + 1 : 2;
+      let listType = app.globalData.listType;
+      const _this = this;
+      let url = "/pages/text-list/text-list?id=" + id + "&type=" + listType;
+      console.log('url2--', url);
+      tt.navigateTo({
+        url: url,
+      });
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
