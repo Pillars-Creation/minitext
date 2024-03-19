@@ -1,14 +1,11 @@
-var app = getApp();
 // pages/result/result.js
 Page({
   
   handleBack: function () {
-    wx.navigateTo({
-      url: "/pages/index/index",
+    wx.navigateBack({
+      delta: 3,
     });
-    app.globalData.count = 0;
   },
-  
   /**
    * 页面的初始数据
    */
