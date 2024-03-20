@@ -69,21 +69,29 @@ Component({
   },
 
   methods: {
+        
+    onLoad: function (options) {
+  
+      // const {
+      //   initInsertAd,
+      //   initRewardedVideoAd
+      // } = app.globalData;
+      // // 初始化插屏
+      // this.interstitialAd = initInsertAd.bind(this)('9041zipeh9eai60s8j');
+      // // 初始化
+      // this.rewardedVideoAd = initRewardedVideoAd.bind(this)('y0pg2zt7qllnfett1f', this.rewardedAd);
+      // this.updateDate(this.data.currentDate);
+  
+    },
+
     navigateToPage: function (event) {
       let index = event.currentTarget.dataset.index;
       // 添加一个统计变量，2次以外展示结果
       console.log('count before setData:', app.globalData.count);
       if (app.globalData.count > 0) {
-        console.log('count 第二次展现 setData:', app.globalData.count);
-        app.globalData.count = 0;
-        let listType = app.globalData.listType;
-        let ids = app.globalData.ids;
-        let list = app.globalData.list;
-        let url = "/pages/result/result" + "?options=" + 1 + "&listType=" + listType + "&type=" + ids ;
-        console.log('Navigate to URL:', url);
-        tt.navigateTo({
-          url: url
-        });
+        console.log('观看一次广告:', app.globalData.count);
+        this.beforeRedirectAdHandle();
+
       } else {
         console.log('count 第一次展现 setData:', app.globalData.count);
         app.globalData.count = app.globalData.count + 1;
@@ -97,9 +105,65 @@ Component({
           url: url,
         });
       }
+    },
+
+
+    rewardedAd(){
+      console.log('count 第二次展现 setData:', app.globalData.count);
+      app.globalData.count = 0;
+      let listType = this.properties.listType;
+      let ids = this.properties.ids;
+      let list = this.properties.list;
+      let url = "/pages/result/result" + "?options=" + 1 + "&listType=" + listType + "&type=" + ids + "&img=" + "../../assets/images/background.jpg";
+      console.log('Navigate to URL:', url);
+      tt.navigateTo({
+        url: url
+      });
+    },
+
+      // come ad confirm
+  beforeRedirectAdHandle() {
+    const _this = this;
+    const {
+      initInsertAd,
+      initRewardedVideoAd
+    } = app.globalData;
+    
+    // 初始化
+    if (!this.rewardedVideoAd) {
+      this.rewardedVideoAd = initRewardedVideoAd.bind(this)('ebww396g76p8occ8g5', this.rewardedAd);
     }
     
+    tt.showModal({
+      title: "即将进入广告",
+      content: "【看广告】后方可获取激励结果",
+      showCancel: false,
+      success(res) {
+        // 如果用户点击了确定
+        if (res.confirm) {
+          // 展示激励视频
+          console.log('start ad', 'start ad');
+          app.globalData.showRewardedVideoAd.bind(_this)(_this.rewardedVideoAd);
+          console.log('end ad', 'end ad');
+          
+          setTimeout(() => {
+            tt.hideLoading();
+          }, 1);
+          // 设置已经展示过激励视频的标志位
+          app.globalData.hasShownRewardedVideoAd = true;
+        }
+      },
+      fail(err) {
+        console.log('showModal fail', err);
+        tt.navigateTo({
+          url: url,
+        });
+      }
+    });
     
+  },
+
+
 
   },
 
